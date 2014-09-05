@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="PharmML_validator" default="all" basedir=".">
+	
+	<path id="ivy.lib.path">
+			<pathelement location="ivy/ivy-2.3.0.jar" />
+	</path>
+	<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant"
+		            classpathref="ivy.lib.path"/>
+	
+	<target name="all" depends="clean-jar,build-jar">
+	</target>
+	
+	<target name="clean-jar">
+		<delete dir="jar"/>
+	</target>
+	
+	<target name="retrieve" depends="">
+			<ivy:retrieve pattern="ivy_lib/[conf]/[artifact].[ext]"/>
+	</target>
+	
+	<!--<path id="build-classpath">
+	    <fileset dir="lib">
+	        <include name="*.jar"/>
+	    </fileset>
+	</path>
+	<manifestclasspath property="lib.list" jarfile="jar/validator.jar">
+	    <classpath refid="build-classpath"/>
+	</manifestclasspath>-->
+	
+	<target name="build-jar">
+		<mkdir dir="jar"/>
+		<jar destfile="jar/validator.jar"
+			basedir="bin">
+			<zipgroupfileset dir="ivy_lib/src-build" includes="*.jar" excludes=""/>
+			<manifest>
+				<attribute name="Main-Class" value="uk.ac.ebi.ddmore.pharmml.validator.Validator"/>
+				<!--<attribute name="Class-Path" value="${lib.list}"/>-->
+			</manifest>
+		</jar>
+	</target>
+	
+</project>

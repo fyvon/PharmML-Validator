@@ -1,0 +1,16 @@
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+    <info
+        organisation="uk.ac.ebi"
+        module="pharmML_validator"
+        status="integration">
+	</info>
+	<configurations>
+		<conf name="src-build"  description="builds src code"/>
+	</configurations>
+	<dependencies>
+		<dependency org="com.sun.xml.bind" name="jaxb-impl" rev="2.2.7" conf="src-build->default"/> 
+		<dependency org="xerces" name="xercesImpl" rev="2.11.0" conf="src-build->default"/>
+		<dependency org="xml-resolver" name="xml-resolver" rev="1.2" conf="src-build->default"/>
+	</dependencies>
+</ivy-module>
