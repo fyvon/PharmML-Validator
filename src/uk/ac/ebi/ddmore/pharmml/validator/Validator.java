@@ -38,24 +38,26 @@ public class Validator {
 		for(String fileName : args){
 			
 			try {
-				print("\n---------------------------------------\n");
-				print("MODEL: "+fileName+"\n");
+//				print("\n---------------------------------------\n");
+				print("Validating model: "+fileName+"\n");
 
 				InputStream in = new FileInputStream(fileName);
 				IPharmMLResource pmlResource = libPharmML.createDomFromResource(in);
 				in.close();
 				
+				// Creation report
 				IValidationReport creationReport = pmlResource.getCreationReport();
-				print("CREATION REPORT: "+creationReport.numErrors()+" error(s)\n");
+				print("Creation report: "+creationReport.numErrors()+" error(s)\n");
 				for(int i=1;i<=pmlResource.getCreationReport().numErrors();i++){
 					print("\t- "+pmlResource.getCreationReport().getError(i)+"\n");
 				}
 				@SuppressWarnings("unused")
 				PharmML dom = pmlResource.getDom();
 	
+				// Validation report
 				IPharmMLValidator validator = libPharmML.getValidator();
 				IValidationReport rpt = validator.createValidationReport(pmlResource);
-				print("VALIDATION REPORT: "+rpt.numErrors()+" error(s)\n");
+				print("Validation report: "+rpt.numErrors()+" error(s)\n");
 				for(int i=1;i<=rpt.numErrors();i++){
 					print("\t- "+rpt.getError(i)+"\n");
 				}	
@@ -63,7 +65,7 @@ public class Validator {
 			} catch (IOException e) {
 				print("Error: "+e.getMessage()+"\n");
 			} finally {
-				print("\n---------------------------------------\n");
+				print("---------------------------------------\n");
 			}
 			
 		}
