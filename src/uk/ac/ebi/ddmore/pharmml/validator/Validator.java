@@ -29,29 +29,16 @@ import eu.ddmore.libpharmml.PharmMlFactory;
 import eu.ddmore.libpharmml.dom.PharmML;
 
 public class Validator {
+	
+	static ILibPharmML libPharmML = PharmMlFactory.getInstance().createLibPharmML();
 
 	public static void main(String[] args) {
-		
-		ILibPharmML libPharmML = PharmMlFactory.getInstance().createLibPharmML();
 		
 		for(String fileName : args){
 			
 			try {
-//				print("\n---------------------------------------\n");
-				print("Validating model: "+fileName+"\n");
-
-				InputStream in = new FileInputStream(fileName);
-				IPharmMLResource pmlResource = libPharmML.createDomFromResource(in);
-				in.close();
-				
-				// Creation report
-				IValidationReport creationReport = pmlResource.getCreationReport();
-				print("Creation report: "+creationReport.numErrors()+" error(s)\n");
-				for(int i=1;i<=pmlResource.getCreationReport().numErrors();i++){
-					print("\t- "+pmlResource.getCreationReport().getError(i)+"\n");
-				}
-				@SuppressWarnings("unused")
-				PharmML dom = pmlResource.getDom();
+//				
+				validate(fileName);
 	
 				// Validation report
 //				IPharmMLValidator validator = libPharmML.getValidator();
@@ -69,6 +56,23 @@ public class Validator {
 			
 		}
 		
+	}
+	
+	public static void validate(String fileName) throws IOException{
+		print("Validating model: "+fileName+"\n");
+		
+		InputStream in = new FileInputStream(fileName);
+		IPharmMLResource pmlResource = libPharmML.createDomFromResource(in);
+		in.close();
+		
+		// Creation report
+		IValidationReport creationReport = pmlResource.getCreationReport();
+		print("Creation report: "+creationReport.numErrors()+" error(s)\n");
+		for(int i=1;i<=pmlResource.getCreationReport().numErrors();i++){
+			print("\t- "+pmlResource.getCreationReport().getError(i)+"\n");
+		}
+		@SuppressWarnings("unused")
+		PharmML dom = pmlResource.getDom();
 	}
 	
 	private static void print(String o){
