@@ -24,7 +24,6 @@ import java.io.InputStream;
 
 import eu.ddmore.libpharmml.ILibPharmML;
 import eu.ddmore.libpharmml.IPharmMLResource;
-import eu.ddmore.libpharmml.IPharmMLValidator;
 import eu.ddmore.libpharmml.IValidationReport;
 import eu.ddmore.libpharmml.PharmMlFactory;
 import eu.ddmore.libpharmml.dom.PharmML;
@@ -55,12 +54,12 @@ public class Validator {
 				PharmML dom = pmlResource.getDom();
 	
 				// Validation report
-				IPharmMLValidator validator = libPharmML.getValidator();
-				IValidationReport rpt = validator.createValidationReport(pmlResource);
-				print("Validation report: "+rpt.numErrors()+" error(s)\n");
-				for(int i=1;i<=rpt.numErrors();i++){
-					print("\t- "+rpt.getError(i)+"\n");
-				}	
+//				IPharmMLValidator validator = libPharmML.getValidator();
+//				IValidationReport rpt = validator.createValidationReport(pmlResource);
+//				print("Validation report: "+rpt.numErrors()+" error(s)\n");
+//				for(int i=1;i<=rpt.numErrors();i++){
+//					print("\t- "+rpt.getError(i)+"\n");
+//				}	
 			
 			} catch (IOException e) {
 				print("Error: "+e.getMessage()+"\n");
