@@ -33,7 +33,7 @@ public class SOValidator {
 	}
 	
 	public static void validate(String fileName) throws IOException{
-		print("Validating model: "+fileName+"\n");
+		print("Validating SO: "+fileName+"\n");
 		
 		InputStream in = new FileInputStream(fileName);
 		StandardisedOutputResource soResource = libSO.createDomFromResource(in);
