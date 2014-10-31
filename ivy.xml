@@ -13,6 +13,5 @@
 		<dependency org="xerces" name="xercesImpl" rev="2.11.0" conf="src-build->default"/>
 		<dependency org="xml-resolver" name="xml-resolver" rev="1.2" conf="src-build->default"/>
 		<dependency org="eu.ddmore.pharmml" name="libPharmML" rev="0.3.2-b3" conf="src-build->default"/>
-		<dependency org="eu.ddmore.pharmml" name="libPharmML-SO" rev="0.1-b1" conf="src-build->default"/>
 	</dependencies>
 </ivy-module>
