@@ -33,7 +33,7 @@
 			basedir="bin">
 			<zipgroupfileset dir="ivy_lib/src-build" includes="*.jar" excludes=""/>
 			<manifest>
-				<attribute name="Main-Class" value="uk.ac.ebi.ddmore.pharmml.validator.Validator"/>
+				<attribute name="Main-Class" value="eu.ddmore.pharmml.validator.Validator"/>
 				<!--<attribute name="Class-Path" value="${lib.list}"/>-->
 			</manifest>
 		</jar>
