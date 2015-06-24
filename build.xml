@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:ivy="antlib:org.apache.ivy.ant" name="PharmML_validator" default="all" basedir=".">
+	<property name="build.dir" location="build"/>
+	<property name="src.bin.dir" location="${build.dir}/src"/>
+	<property name="src.dir" location="./src"/>
+	<property name="target" value="1.7" />
+    <property name="source" value="1.7" />
+    <property name="ivy.lib.dir" location="./ivy_lib"/>
 	
 	<path id="ivy.lib.path">
 			<pathelement location="ivy/ivy-2.3.0.jar" />
 	</path>
 	<taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant"
 		            classpathref="ivy.lib.path"/>
+		            
+	<path id="src.path">
+		<fileset dir="${ivy.lib.dir}/src-build"/>
+	</path>
 	
-	<target name="all" depends="retrieve,clean-jar,build-jar">
+	<target name="all" depends="clean-jar,build-src,build-jar">
 	</target>
 	
 	<target name="clean-jar">
@@ -16,6 +26,34 @@
 	
 	<target name="retrieve" depends="">
 			<ivy:retrieve pattern="ivy_lib/[conf]/[artifact].[ext]"/>
+	</target>
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: init                      
+         - - - - - - - - - - - - - - - - - -->
+	<target name="init">
+		<delete dir="${build.dir}"/>
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${src.bin.dir}"/>
+	</target>
+	
+	<!-- ================================= 
+          target: build-src              
+         ================================= -->
+	<target name="build-src" depends="init,retrieve" description="Build src files.">
+		<javac srcdir="${src.dir}"
+         destdir="${src.bin.dir}"
+         includeantruntime="no"
+         classpathref="src.path"
+         source="${source}"
+         target="${target}"
+         debug="on"/>
+		<copy todir="${src.bin.dir}">
+			<fileset dir="${src.dir}">
+				<exclude name="**/*.class" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
 	</target>
 	
 	<!--<path id="build-classpath">
@@ -29,8 +67,8 @@
 	
 	<target name="build-jar">
 		<mkdir dir="jar"/>
-		<jar destfile="jar/validator.jar"
-			basedir="bin">
+		<jar destfile="jar/validator-0.4.jar"
+			basedir="${src.bin.dir}">
 			<zipgroupfileset dir="ivy_lib/src-build" includes="*.jar" excludes=""/>
 			<manifest>
 				<attribute name="Main-Class" value="eu.ddmore.pharmml.validator.Validator"/>
