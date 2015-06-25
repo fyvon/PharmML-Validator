@@ -34,6 +34,10 @@ public class Validator {
 
 	public static void main(String[] args) {
 		
+		if(args.length == 0){
+			print("Usage: java -jar  [FILE...]\n");
+		}
+		
 		for(String fileName : args){
 			
 			try {
