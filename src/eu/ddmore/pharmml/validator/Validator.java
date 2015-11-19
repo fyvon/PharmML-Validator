@@ -75,6 +75,12 @@ public class Validator {
 		for(int i=1;i<=pmlResource.getCreationReport().numErrors();i++){
 			print("\t- "+pmlResource.getCreationReport().getError(i)+"\n");
 		}
+		// Creation report
+		IValidationReport validationReport = libPharmML.getValidator().createValidationReport(pmlResource);
+		print("Validation report: "+validationReport.numErrors()+" error(s)\n");
+		for(int i=1;i<=validationReport.numErrors();i++){
+			print("\t- "+validationReport.getError(i)+"\n");
+		}
 		@SuppressWarnings("unused")
 		PharmML dom = pmlResource.getDom();
 	}
