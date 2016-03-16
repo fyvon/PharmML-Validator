@@ -67,7 +67,7 @@
 	
 	<target name="build-jar">
 		<mkdir dir="jar"/>
-		<jar destfile="jar/PharmML-0.6-validator.jar"
+		<jar destfile="jar/PharmML-0.8-validator.jar"
 			basedir="${src.bin.dir}">
 			<zipgroupfileset dir="ivy_lib/src-build" includes="*.jar" excludes=""/>
 			<manifest>
