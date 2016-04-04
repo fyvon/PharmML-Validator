@@ -7,6 +7,9 @@
     <property name="source" value="1.7" />
     <property name="ivy.lib.dir" location="./ivy_lib"/>
 	
+	<property name="vendor" value="EMBL-EBI"/>
+	<property name="title" value="PharmML-validator"/>
+	
 	<path id="ivy.lib.path">
 			<pathelement location="ivy/ivy-2.3.0.jar" />
 	</path>
@@ -67,12 +70,14 @@
 	
 	<target name="build-jar">
 		<mkdir dir="jar"/>
-		<jar destfile="jar/PharmML-0.8-validator.jar"
+		<jar destfile="jar/PharmML-0.8.1-validator.jar"
 			basedir="${src.bin.dir}">
 			<zipgroupfileset dir="ivy_lib/src-build" includes="*.jar" excludes=""/>
 			<manifest>
 				<attribute name="Main-Class" value="eu.ddmore.pharmml.validator.Validator"/>
 				<!--<attribute name="Class-Path" value="${lib.list}"/>-->
+				<attribute name="Implementation-Vendor" value="${vendor}"/>
+				<attribute name="Implementation-Title" value="${title}"/>
 			</manifest>
 		</jar>
 	</target>
