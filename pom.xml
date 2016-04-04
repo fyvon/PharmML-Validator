@@ -21,7 +21,7 @@
 		<dependency>
             <groupId>eu.ddmore.pharmml</groupId>
             <artifactId>libPharmML</artifactId>
-            <version>[0.6.1,0.7)</version>
+            <version>[0.6.1,0.8)</version>
         </dependency>
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
