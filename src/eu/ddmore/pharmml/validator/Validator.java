@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2014 European Molecular Biology Laboratory,
+ * Copyright (c) 2014-2016 European Molecular Biology Laboratory,
  * Heidelberg, Germany.
  *
  * Licensed under the Apache License, Version 2.0 (the
@@ -27,6 +27,7 @@ import eu.ddmore.libpharmml.IPharmMLResource;
 import eu.ddmore.libpharmml.IValidationReport;
 import eu.ddmore.libpharmml.PharmMlFactory;
 import eu.ddmore.libpharmml.dom.PharmML;
+import eu.ddmore.libpharmml.impl.PharmMLVersion;
 
 public class Validator {
 	
@@ -35,6 +36,7 @@ public class Validator {
 	public static void main(String[] args) {
 		
 		if(args.length == 0){
+			print("Stand-alone validator for PharmML "+PharmMLVersion.DEFAULT.getValue()+".\n");
 			print("Usage: java -jar  [FILE...]\n");
 		}
 		
